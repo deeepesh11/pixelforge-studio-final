@@ -2,7 +2,7 @@
    PixelForge Studio — main.js
    Shared JS for all pages
    ============================================================ */
-
+console.log("🔥 MAIN JS LOADED ON VERCEL");
 // ===== GOOGLE SHEETS CONFIG =====
 // Step 1: Google Sheets mein jaao → Tools → Apps Script
 // Step 2: Wahan script paste karo (README mein diya hai)
