@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Done!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+
+<!-- Quote Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Get a Free Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label class="form-label">Project Type</label><select class="form-select" id="modal-type"><option value="">Select a service</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option><option>Portfolio</option><option>Custom Project</option></select></div>
+    <div class="form-group"><label class="form-label">Budget</label><select class="form-select" id="modal-budget"><option value="">Select budget</option><option>$500 – $1,500</option><option>$1,500 – $5,000</option><option>$5,000 – $15,000</option><option>$15,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Tell us about your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send Request →</button>
+  </div>
+</div>
+
+<!-- Project Detail Modal -->
+<div class="modal-overlay" id="project-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title" id="pm-title"></div><div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted);margin-top:4px" id="pm-type"></div></div>
+      <button class="modal-close" onclick="document.getElementById('project-modal').classList.remove('open')">✕</button>
+    </div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:20px" id="pm-desc"></p>
+    <div style="background:rgba(200,245,66,0.06);border:1px solid rgba(200,245,66,0.15);border-radius:12px;padding:16px;margin-bottom:16px">
+      <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);margin-bottom:6px">TECH STACK</div>
+      <div style="font-family:var(--font-head);font-weight:600;font-size:0.9rem" id="pm-stack"></div>
+    </div>
+    <div style="background:rgba(123,94,167,0.1);border:1px solid rgba(123,94,167,0.2);border-radius:12px;padding:16px">
+      <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);margin-bottom:6px">RESULTS</div>
+      <div style="font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:var(--accent)" id="pm-result"></div>
+    </div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:24px" onclick="document.getElementById('project-modal').classList.remove('open');openModal()">Start Similar Project →</button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html">Services</a>
+  <a href="work.html" class="current">Work</a><a href="about.html">About</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html" class="current">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Portfolio</div>
+  <h1 class="section-title">Selected <span class="accent">Projects</span></h1>
+  <p class="section-desc" style="margin:16px auto 0;max-width:540px">Six years of building for the best — startups, agencies, and Fortune 500 brands.</p>
+</div>
+
+<section class="section">
+  <!-- Filter -->
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px">
+    <button class="filter-btn active-filter" onclick="filterWork(this,'all')">All Work</button>
+    <button class="filter-btn" onclick="filterWork(this,'saas')">SaaS</button>
+    <button class="filter-btn" onclick="filterWork(this,'ecom')">E-commerce</button>
+    <button class="filter-btn" onclick="filterWork(this,'brand')">Branding</button>
+    <button class="filter-btn" onclick="filterWork(this,'landing')">Landing Pages</button>
+  </div>
+
+  <div class="work-grid" id="work-grid">
+    <div class="work-card" data-cat="saas">
+      <div class="work-thumb wt1">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <div class="mock-browser"><div class="mock-titlebar"><div class="dot d-red"></div><div class="dot d-yellow"></div><div class="dot d-green"></div></div><div class="mock-content"><div class="mock-line" style="width:100%"></div><div class="mock-line" style="width:70%"></div><div class="mock-line" style="width:85%"></div></div></div>
+        </div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('Nexus Analytics','SaaS Dashboard','Complete analytics platform with real-time data visualization, custom reporting, and AI-powered insights. Built with React, D3.js, and Node.js backend.','React · D3.js · Node.js · PostgreSQL','↑ 280% user retention')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">SaaS / Dashboard</div><div class="work-title">Nexus Analytics Platform</div><div class="work-desc-small">Real-time data visualization for 50k+ users</div></div>
+    </div>
+    <div class="work-card" data-cat="ecom">
+      <div class="work-thumb wt2">
+        <div style="text-align:center"><div style="font-size:2.5rem">👗</div><div style="font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1.1rem;margin-top:8px">LUXE</div></div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('Luxe Fashion','E-commerce Store','Premium fashion e-commerce with 3D product views, size guide AI, and one-click checkout. Increased conversions 340% in 60 days.','Next.js · Shopify · Stripe · Three.js','↑ 340% conversions')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">E-commerce</div><div class="work-title">Luxe Fashion Store</div><div class="work-desc-small">Premium clothing brand with immersive UX</div></div>
+    </div>
+    <div class="work-card" data-cat="landing">
+      <div class="work-thumb wt3">
+        <div style="text-align:center"><div style="font-size:2.5rem">✈️</div><div style="font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1.1rem;margin-top:8px">TravelFlow</div></div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('TravelFlow','Travel Agency Site','Full destination booking platform with interactive 3D globe, real-time pricing, and seamless booking flow. 5-star rated by 12k users.','React · Three.js · Stripe · MongoDB','★ 4.9/5 rating')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">Travel / Landing Page</div><div class="work-title">TravelFlow Agency</div><div class="work-desc-small">Destination booking with 3D map experience</div></div>
+    </div>
+    <div class="work-card" data-cat="brand">
+      <div class="work-thumb wt4">
+        <div style="text-align:center"><div style="font-size:2.5rem">☕</div><div style="font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1.1rem;margin-top:8px">ROAST</div></div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('Roast Coffee Co.','Brand Website','Artisan coffee brand website with atmospheric parallax scrolling, subscription system, and location finder for 80+ cafes.','HTML · CSS · GSAP · Stripe','↑ 190% subscriptions')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">Food & Beverage / Brand</div><div class="work-title">Roast Coffee Co.</div><div class="work-desc-small">Artisan brand site with subscription platform</div></div>
+    </div>
+    <div class="work-card" data-cat="saas">
+      <div class="work-thumb wt5">
+        <div style="text-align:center"><div style="font-size:2.5rem">🌿</div><div style="font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1.1rem;margin-top:8px">GreenBase</div></div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('GreenBase','B2B SaaS Platform','Sustainability tracking platform for enterprises. Carbon footprint dashboards, team reporting, and compliance automation.','React · Node.js · Supabase · Chart.js','↑ 520% signups')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">B2B SaaS</div><div class="work-title">GreenBase Sustainability</div><div class="work-desc-small">Enterprise carbon tracking and reporting</div></div>
+    </div>
+    <div class="work-card" data-cat="ecom landing">
+      <div class="work-thumb wt6">
+        <div style="text-align:center"><div style="font-size:2.5rem">💜</div><div style="font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1.1rem;margin-top:8px">BeautyCo</div></div>
+        <div class="work-overlay"><button class="view-btn" onclick="showProject('BeautyCo','Beauty E-commerce','Luxury skincare brand with virtual try-on feature, personalized recommendation quiz, and subscription boxes.','Next.js · WebGL · Stripe · Klaviyo','↑ 410% repeat orders')">View Case Study</button></div>
+      </div>
+      <div class="work-info"><div class="work-cat">Beauty / E-commerce</div><div class="work-title">BeautyCo Skincare</div><div class="work-desc-small">Luxury brand with virtual try-on technology</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Want Results Like <span class="accent">These?</span></h2>
+  <p>Let's create something that moves the needle for your business.</p>
+  <button class="btn-primary" onclick="openModal()">Get Free Quote →</button>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="logo" href="../index.html">PIXEL<span>FORGE</span></a><p>Building extraordinary digital experiences for ambitious brands.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">All Services</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function showProject(title, type, desc, stack, result) {
+  document.getElementById('pm-title').textContent  = title;
+  document.getElementById('pm-type').textContent   = type;
+  document.getElementById('pm-desc').textContent   = desc;
+  document.getElementById('pm-stack').textContent  = stack;
+  document.getElementById('pm-result').textContent = result;
+  document.getElementById('project-modal').classList.add('open');
+}
+document.getElementById('project-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('project-modal'))
+    document.getElementById('project-modal').classList.remove('open');
+});
+</script>
+</body>
+</html>

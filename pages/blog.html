@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Done!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Get a Free Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label class="form-label">Project Type</label><select class="form-select" id="modal-type"><option value="">Select a service</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option><option>Portfolio</option></select></div>
+    <div class="form-group"><label class="form-label">Budget</label><select class="form-select" id="modal-budget"><option value="">Select budget</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send →</button>
+  </div>
+</div>
+
+<!-- Blog Article Modal -->
+<div class="modal-overlay" id="blog-modal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent);margin-bottom:4px" id="bm-cat"></div>
+        <div class="modal-title" id="bm-title" style="font-size:1.1rem;line-height:1.3"></div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('blog-modal').classList.remove('open')">✕</button>
+    </div>
+    <p style="color:var(--muted);font-size:0.88rem;line-height:1.8" id="bm-content"></p>
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;gap:12px;align-items:center">
+      <div style="font-size:0.82rem;color:var(--muted)">Enjoyed this?</div>
+      <button class="btn-primary" style="font-size:0.8rem;padding:8px 18px" onclick="document.getElementById('blog-modal').classList.remove('open');openModal()">Work With Us</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html">Services</a>
+  <a href="work.html">Work</a><a href="about.html">About</a>
+  <a href="blog.html" class="current">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="current">Blog</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Insights</div>
+  <h1 class="section-title">The PixelForge <span class="accent">Blog</span></h1>
+  <p class="section-desc" style="margin:16px auto 0;max-width:500px">Design tips, dev tutorials, and strategic thinking for building better digital products.</p>
+</div>
+
+<section class="section">
+  <div class="blog-grid">
+    <div class="blog-card" onclick="openBlog('The Psychology of Color in Web Design','Design','Color is one of the most powerful tools in a designer\'s arsenal. Studies show that up to 90% of snap judgments about products are based on color alone. Blue builds trust (banks, tech), red creates urgency (sales, food), green signals growth and calm. For web design, your primary CTA button color matters more than most realize. The key is contrast and consistency: your accent color should appear in a maximum of 15% of the design to retain visual impact. Test ruthlessly and trust data over aesthetic preference.')">
+      <div class="blog-thumb bt1">🎨</div>
+      <div class="blog-body"><div class="blog-cat">Design</div><div class="blog-title">The Psychology of Color in Web Design</div><div class="blog-excerpt">How strategic color choices influence user behavior, build trust, and drive conversions.</div><div class="blog-meta"><span>Jan 28, 2026</span><span>·</span><span>8 min read</span></div></div>
+    </div>
+    <div class="blog-card" onclick="openBlog('Why Your Website Speed Is Killing Your Sales','Performance','Google data shows that as page load time goes from 1 second to 3 seconds, bounce rate increases by 32%. From 1 to 6 seconds? 106%. For every $1 invested in performance optimization, the average return is $3 in additional conversions. Start with these quick wins: compress all images to WebP, enable browser caching, defer non-critical JavaScript, and move to a CDN. Our clients who completed full performance audits saw an average 180ms improvement in LCP and a 23% increase in revenue.')">
+      <div class="blog-thumb bt2">⚡</div>
+      <div class="blog-body"><div class="blog-cat">Performance</div><div class="blog-title">Why Your Website Speed Is Killing Your Sales</div><div class="blog-excerpt">A 1-second delay costs you 7% in conversions. Here's the data and exactly how to fix it.</div><div class="blog-meta"><span>Jan 14, 2026</span><span>·</span><span>6 min read</span></div></div>
+    </div>
+    <div class="blog-card" onclick="openBlog('Building Scroll Animations That Don\'t Suck','Development','Great scroll animations feel inevitable — like the content was always meant to move that way. The golden rule: animate with purpose, not decoration. Every animation should reinforce hierarchy, guide attention, or reward exploration. Technically, always use CSS transforms and opacity for animation (not height/width/margin), use will-change sparingly, and test on low-power devices. For the best results with JavaScript-driven scroll animations, use Intersection Observer for entry effects and GSAP ScrollTrigger for timeline-based animations.')">
+      <div class="blog-thumb bt3">✨</div>
+      <div class="blog-body"><div class="blog-cat">Development</div><div class="blog-title">Building Scroll Animations That Don't Suck</div><div class="blog-excerpt">The principles behind great scroll-triggered animations — and the common pitfalls to avoid.</div><div class="blog-meta"><span>Dec 30, 2025</span><span>·</span><span>10 min read</span></div></div>
+    </div>
+    <div class="blog-card" onclick="openBlog('12 E-commerce UX Changes That Triple Conversions','UX/CRO','1) Show product images from multiple angles. 2) Add a sticky Add to Cart button on mobile. 3) Display live inventory counts. 4) Show trust badges near the checkout button. 5) Offer guest checkout — forcing accounts kills 24% of checkouts. 6) Surface reviews next to price. 7) Add size/color swatches with instant preview. 8) Show shipping time prominently. 9) Use upsell triggers post add-to-cart. 10) Implement saved cart recovery. 11) Add a comparison tool. 12) Reduce form fields at checkout to absolute minimum.')">
+      <div class="blog-thumb bt4">🛒</div>
+      <div class="blog-body"><div class="blog-cat">UX / CRO</div><div class="blog-title">12 E-commerce UX Changes That Triple Conversions</div><div class="blog-excerpt">Proven, data-backed UX optimizations we've used across 40+ e-commerce projects.</div><div class="blog-meta"><span>Dec 18, 2025</span><span>·</span><span>12 min read</span></div></div>
+    </div>
+    <div class="blog-card" onclick="openBlog('2026 Web Design Trends You Actually Need to Know','Trends','The standout trends of 2026 are substantive shifts, not visual gimmicks. AI-personalized layouts are mainstream. Dark mode is now the default for 60% of users under 35. Brutalist-meets-refined typography is replacing generic design systems. Spatial UI inspired by AR interfaces is bleeding into flat web design. And performance has become a design constraint — 95+ Lighthouse scores are table stakes for competitive brands. The teams winning in 2026 treat design and engineering as one unified discipline.')">
+      <div class="blog-thumb bt5">🔭</div>
+      <div class="blog-body"><div class="blog-cat">Trends</div><div class="blog-title">2026 Web Design Trends You Actually Need to Know</div><div class="blog-excerpt">Beyond the hype: the design and tech trends genuinely changing how websites are built.</div><div class="blog-meta"><span>Dec 5, 2025</span><span>·</span><span>7 min read</span></div></div>
+    </div>
+    <div class="blog-card" onclick="openBlog('From Figma to Code: Our Design-Dev Handoff','Process','Our process starts with a structured component audit — before writing code we catalogue every unique component in the design and group them by complexity. We use Figma\'s Developer Mode for exact spacing, type tokens, and color variables. Every design decision that isn\'t obvious in the mockup gets a design note. The developer then builds in a dedicated branch with a live preview URL updated every 24 hours. Design reviews happen in the browser, not Figma. This process has helped us reduce revision cycles by 60%.')">
+      <div class="blog-thumb bt6">🔄</div>
+      <div class="blog-body"><div class="blog-cat">Process</div><div class="blog-title">From Figma to Code: Our Design-Dev Handoff</div><div class="blog-excerpt">How we bridge the gap between beautiful designs and pixel-perfect implementation.</div><div class="blog-meta"><span>Nov 22, 2025</span><span>·</span><span>9 min read</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<div class="cta-section">
+  <h2>Want More <span class="accent">Insights?</span></h2>
+  <p>Get our best design and dev tips delivered monthly. No spam, unsubscribe anytime.</p>
+  <div style="display:flex;gap:12px;justify-content:center;max-width:420px;margin:0 auto;flex-wrap:wrap">
+    <input class="form-input" type="email" placeholder="your@email.com" id="newsletter-email" style="flex:1;min-width:200px">
+    <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="logo" href="../index.html">PIXEL<span>FORGE</span></a><p>Building extraordinary digital experiences for ambitious brands.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">All Services</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="work.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function openBlog(title, cat, content) {
+  document.getElementById('bm-title').textContent   = title;
+  document.getElementById('bm-cat').textContent     = cat.toUpperCase();
+  document.getElementById('bm-content').textContent = content;
+  document.getElementById('blog-modal').classList.add('open');
+}
+document.getElementById('blog-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('blog-modal'))
+    document.getElementById('blog-modal').classList.remove('open');
+});
+</script>
+</body>
+</html>

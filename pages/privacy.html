@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>.legal-body{max-width:760px;margin:0 auto}.legal-body h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;margin:32px 0 12px;color:var(--text)}.legal-body p{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:16px}</style>
+</head>
+<body>
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Done!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Get a Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="modal-name" type="text" placeholder="Your name"></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="modal-email" type="email" placeholder="your@email.com"></div>
+    <div class="form-group"><label class="form-label">Project</label><select class="form-select" id="modal-type"><option value="">Select</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option></select></div>
+    <div class="form-group"><label class="form-label">Budget</label><select class="form-select" id="modal-budget"><option value="">Select</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="modal-desc" placeholder="Brief description..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send →</button>
+  </div>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Legal</div>
+  <h1 class="section-title">Privacy <span class="accent">Policy</span></h1>
+  <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);margin-top:12px">Last updated: March 1, 2026</p>
+</div>
+<section class="section">
+  <div class="legal-body">
+    <p>PixelForge Studio ("we", "our", "us") is committed to protecting your personal information. This policy explains how we collect, use, and safeguard your data.</p>
+    <h3>Information We Collect</h3>
+    <p>We collect information you provide directly — name, email, company, and project details when you contact us or request a quote. We also collect anonymized analytics data including page views and interaction data.</p>
+    <h3>How We Use Your Information</h3>
+    <p>To respond to your inquiries, send project proposals, and improve our services. We never sell or share your data with third parties for marketing purposes.</p>
+    <h3>Data Retention</h3>
+    <p>Contact form submissions are retained for 2 years. You may request deletion at any time by emailing privacy@pixelforge.studio.</p>
+    <h3>Cookies</h3>
+    <p>We use essential cookies for site functionality and anonymized analytics cookies via a privacy-first provider. You may opt out of analytics cookies at any time through your browser settings.</p>
+    <h3>Your Rights</h3>
+    <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at privacy@pixelforge.studio. We will respond within 30 days.</p>
+    <h3>Third-Party Services</h3>
+    <p>We use Stripe for payment processing. Stripe's privacy policy governs data collected during payment transactions. We do not store payment card information on our servers.</p>
+    <h3>Security</h3>
+    <p>We implement industry-standard security measures including SSL encryption, secure servers, and access controls. However, no method of transmission over the internet is 100% secure.</p>
+    <h3>Contact</h3>
+    <p>For privacy inquiries: privacy@pixelforge.studio — 550 Market St, San Francisco, CA 94104</p>
+  </div>
+</section>
+<footer>
+  <div class="footer-bottom" style="border:none">
+    <p>© 2026 PixelForge Studio.</p>
+    <a href="../index.html" class="btn-outline" style="font-size:0.85rem;padding:10px 20px">← Back to Home</a>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

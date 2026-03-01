@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Success!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+
+<!-- Quote Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Get a Free Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label class="form-label">Project Type</label><select class="form-select" id="modal-type"><option value="">Select a service</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option><option>Portfolio</option><option>Custom Project</option></select></div>
+    <div class="form-group"><label class="form-label">Budget Range</label><select class="form-select" id="modal-budget"><option value="">Select budget</option><option>$500 – $1,500</option><option>$1,500 – $5,000</option><option>$5,000 – $15,000</option><option>$15,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Brief Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Tell us about your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send Request →</button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html" class="current">Services</a>
+  <a href="work.html">Work</a><a href="about.html">About</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="services.html" class="current">Services</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Our Expertise</div>
+  <h1 class="section-title">Services That <span class="accent">Drive Results</span></h1>
+  <p class="section-desc" style="margin:16px auto 0;max-width:540px">End-to-end digital solutions crafted for performance, aesthetics, and conversions. No templates — every project is custom built.</p>
+</div>
+
+<!-- All Services -->
+<section class="section">
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🎨</div><div class="service-name">Custom Landing Pages</div><div class="service-desc">Conversion-optimized landing pages with animated heroes, compelling storytelling, and A/B tested CTAs. Mobile-first and blazing fast.</div><div class="service-tags"><span class="tag">HTML/CSS</span><span class="tag">React</span><span class="tag">GSAP</span><span class="tag">A/B Testing</span></div></div>
+    <div class="service-card"><div class="service-icon">🏢</div><div class="service-name">Business Websites</div><div class="service-desc">Multi-page professional websites with CMS integration, blog functionality, contact forms, and full SEO optimization.</div><div class="service-tags"><span class="tag">Next.js</span><span class="tag">WordPress</span><span class="tag">SEO</span><span class="tag">CMS</span></div></div>
+    <div class="service-card"><div class="service-icon">💼</div><div class="service-name">Portfolio Websites</div><div class="service-desc">Stunning portfolio sites with smooth transitions, case studies, and inquiry forms that showcase work beautifully.</div><div class="service-tags"><span class="tag">Three.js</span><span class="tag">Animation</span><span class="tag">Framer</span></div></div>
+    <div class="service-card"><div class="service-icon">🛒</div><div class="service-name">E-commerce Layouts</div><div class="service-desc">Full-featured online stores with product filtering, cart systems, Stripe/PayPal integration, and analytics dashboards.</div><div class="service-tags"><span class="tag">Shopify</span><span class="tag">Stripe</span><span class="tag">Next.js</span><span class="tag">Supabase</span></div></div>
+    <div class="service-card"><div class="service-icon">✨</div><div class="service-name">Animated Hero Sections</div><div class="service-desc">Breathtaking above-the-fold experiences with particle systems, WebGL backgrounds, and scroll-triggered animations.</div><div class="service-tags"><span class="tag">WebGL</span><span class="tag">GSAP</span><span class="tag">Three.js</span><span class="tag">Lottie</span></div></div>
+    <div class="service-card"><div class="service-icon">☰</div><div class="service-name">Navigation Systems</div><div class="service-desc">Modern full-screen menus, mega menus, sticky headers, and mobile hamburger menus with silky animations.</div><div class="service-tags"><span class="tag">Accessible</span><span class="tag">Animated</span><span class="tag">Mobile-first</span></div></div>
+    <div class="service-card"><div class="service-icon">📱</div><div class="service-name">Mobile & Tablet Design</div><div class="service-desc">Every site we build is fully responsive. We design mobile-first, testing across 50+ device configurations.</div><div class="service-tags"><span class="tag">Responsive</span><span class="tag">PWA</span><span class="tag">Touch UI</span></div></div>
+    <div class="service-card"><div class="service-icon">⚡</div><div class="service-name">Performance Optimization</div><div class="service-desc">Speed audits, image optimization, code splitting, lazy loading, and CDN setup for 95+ Lighthouse scores.</div><div class="service-tags"><span class="tag">Core Web Vitals</span><span class="tag">CDN</span><span class="tag">Caching</span></div></div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section bg-alt">
+  <div class="section-label">How We Work</div>
+  <h2 class="section-title">Our <span class="accent">Process</span></h2>
+  <div class="process-steps" style="margin-top:60px">
+    <div class="process-step"><div class="step-num">01</div><div class="step-title">Discovery</div><div class="step-desc">We learn about your business, goals, audience, and competition through a structured briefing process.</div></div>
+    <div class="process-step"><div class="step-num">02</div><div class="step-title">Strategy</div><div class="step-desc">We plan the sitemap, tech stack, and content structure for maximum conversion and performance.</div></div>
+    <div class="process-step"><div class="step-num">03</div><div class="step-title">Design</div><div class="step-desc">Wireframes to hi-fi mockups in Figma. You approve every pixel before a line of code is written.</div></div>
+    <div class="process-step"><div class="step-num">04</div><div class="step-title">Develop</div><div class="step-desc">Clean, semantic, and scalable code. We build in sprints with daily updates and live previews.</div></div>
+    <div class="process-step"><div class="step-num">05</div><div class="step-title">Launch</div><div class="step-desc">QA testing across devices and browsers, then smooth deployment with zero downtime.</div></div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section">
+  <div class="section-label center" style="justify-content:center">Pricing</div>
+  <h2 class="section-title" style="text-align:center">Transparent <span class="accent">Pricing</span></h2>
+  <p class="section-desc" style="text-align:center;margin:0 auto 60px">No hidden fees. No surprises. Just clear, honest pricing for exceptional work.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$999 <span>one-time</span></div>
+      <div class="plan-desc">Perfect for startups and personal brands</div>
+      <ul class="plan-features">
+        <li>Up to 5 pages</li><li>Responsive design</li><li>Contact form</li>
+        <li>Basic SEO setup</li><li>1 month support</li>
+        <li class="disabled">CMS integration</li><li class="disabled">Animations</li>
+      </ul>
+      <button class="btn-outline" style="width:100%" onclick="openModal()">Get Started</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$2,999 <span>one-time</span></div>
+      <div class="plan-desc">For growing businesses that want to stand out</div>
+      <ul class="plan-features">
+        <li>Up to 15 pages</li><li>Custom animations</li><li>CMS integration</li>
+        <li>Advanced SEO</li><li>3 months support</li><li>Analytics dashboard</li>
+        <li class="disabled">E-commerce features</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;justify-content:center" onclick="openModal()">Get Started →</button>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">Custom</div>
+      <div class="plan-desc">For large-scale projects with unique requirements</div>
+      <ul class="plan-features">
+        <li>Unlimited pages</li><li>Full e-commerce</li><li>Custom web apps</li>
+        <li>API integrations</li><li>12 months support</li>
+        <li>Dedicated project manager</li><li>Priority revisions</li>
+      </ul>
+      <button class="btn-outline" style="width:100%" onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-alt">
+  <div class="section-label" style="justify-content:center">FAQ</div>
+  <h2 class="section-title" style="text-align:center">Common <span class="accent">Questions</span></h2>
+  <div class="faq-list" style="margin-top:40px">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">A landing page typically takes 1–2 weeks, a full business website 3–6 weeks, and e-commerce projects 6–10 weeks. Timeline depends on complexity, content readiness, and revision rounds. We'll give you a precise timeline during discovery.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you offer post-launch support? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes! Every plan includes post-launch support. Starter comes with 1 month, Pro with 3 months, and Enterprise with 12 months. We also offer monthly maintenance retainers for ongoing updates.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What technologies do you use? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">We use modern, battle-tested technologies: React/Next.js for web apps, HTML/CSS/JS for simpler sites, Node.js for backends, Supabase or PostgreSQL for databases, and Stripe for payments.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many revisions are included? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Starter includes 2 revision rounds, Pro includes 4, and Enterprise is unlimited. We structure revisions after the design phase so you have full control before development begins.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you provide hosting and domain setup? <span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">We assist with hosting setup on Vercel, Netlify, or AWS, and can manage DNS/domain configuration. The hosting account remains yours to control and pay for directly.</div></div></div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Ready to Start Your <span class="accent">Project?</span></h2>
+  <p>Tell us your vision. We'll make it real — on time, on budget, beyond expectations.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-primary" onclick="openModal()">Get Free Quote →</button>
+    <a href="contact.html" class="btn-outline">Schedule a Call</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="logo" href="../index.html">PIXEL<span>FORGE</span></a><p>Building extraordinary digital experiences for ambitious brands.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">Business Sites</a></li><li><a href="services.html">E-commerce</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About</a></li><li><a href="work.html">Portfolio</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
