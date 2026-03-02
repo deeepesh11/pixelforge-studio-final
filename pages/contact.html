@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Done!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Quick Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label class="form-label">Project Type</label><select class="form-select" id="modal-type"><option value="">Select</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option></select></div>
+    <div class="form-group"><label class="form-label">Budget</label><select class="form-select" id="modal-budget"><option value="">Select</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send →</button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html">Services</a>
+  <a href="work.html">Work</a><a href="about.html">About</a>
+  <a href="blog.html">Blog</a><a href="contact.html" class="current">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li><li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html" class="current">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Get In Touch</div>
+  <h1 class="section-title">Let's Start <span class="accent">Your Project</span></h1>
+</div>
+
+<section class="section">
+  <div class="contact-grid">
+    <!-- Info -->
+    <div>
+      <p style="color:var(--muted);margin-bottom:40px;line-height:1.8">Whether you have a detailed brief or just a vague idea, we'd love to hear from you. Fill out the form and we'll get back to you within 24 hours with a tailored proposal.</p>
+      <div class="contact-info-item">
+        <div class="ci-icon">📧</div>
+        <div><div class="ci-label">Email</div><div class="ci-val">hello@pixelforge.studio</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📞</div>
+        <div><div class="ci-label">Phone</div><div class="ci-val">+1 (415) 555-0199</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📍</div>
+        <div><div class="ci-label">Location</div><div class="ci-val">San Francisco, CA (Remote-first)</div></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">🕐</div>
+        <div><div class="ci-label">Response Time</div><div class="ci-val">Within 24 hours</div></div>
+      </div>
+      <div style="background:rgba(200,245,66,0.06);border:1px solid rgba(200,245,66,0.15);border-radius:var(--radius);padding:24px;margin-top:16px">
+        <div style="font-family:var(--font-head);font-weight:700;margin-bottom:8px">🟢 Currently Accepting Projects</div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6">We have 3 spots available for new clients starting April 2026. Our slots typically fill 4–6 weeks in advance.</div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" id="cf-fname" type="text" placeholder="John"></div>
+        <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" id="cf-lname" type="text" placeholder="Doe"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email Address *</label><input class="form-input" id="cf-email" type="email" placeholder="john@company.com"></div>
+      <div class="form-group"><label class="form-label">Company (optional)</label><input class="form-input" id="cf-company" type="text" placeholder="Acme Inc."></div>
+      <div class="form-group">
+        <label class="form-label">Service Needed *</label>
+        <select class="form-select" id="cf-service">
+          <option value="">Select a service</option>
+          <option>Landing Page</option><option>Business Website</option>
+          <option>E-commerce Store</option><option>Portfolio Website</option>
+          <option>Web Application</option><option>Performance Optimization</option><option>Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Budget Range</label>
+        <select class="form-select" id="cf-budget">
+          <option value="">Select budget</option>
+          <option>Under $1,000</option><option>$1,000 – $3,000</option>
+          <option>$3,000 – $10,000</option><option>$10,000 – $30,000</option><option>$30,000+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell Us About Your Project *</label>
+        <textarea class="form-textarea" id="cf-message" placeholder="Describe your project, goals, timeline, and anything else you think we should know..."></textarea>
+      </div>
+      <button class="btn-primary" id="contact-submit" style="width:100%;justify-content:center" onclick="submitContactForm()">Send Message →</button>
+      <div id="form-success">✅ Message sent! We'll be in touch within 24 hours.</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:12px;text-align:center">By submitting, you agree to our <a href="privacy.html" style="color:var(--accent)">Privacy Policy</a>. We never share your data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Map area -->
+<section class="section bg-alt">
+  <div class="section-label">Find Us</div>
+  <h2 class="section-title">Based in <span class="accent">San Francisco</span></h2>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);height:280px;display:flex;align-items:center;justify-content:center;margin-top:40px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0d1b2a,#1b3a6b,#0a4769);opacity:0.6"></div>
+    <div style="text-align:center;position:relative;z-index:1">
+      <div style="font-size:3rem;margin-bottom:12px">📍</div>
+      <div style="font-family:var(--font-head);font-weight:700;font-size:1.1rem">PixelForge Studio</div>
+      <div style="font-size:0.85rem;color:var(--muted);margin-top:4px">550 Market St, San Francisco, CA 94104</div>
+      <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);margin-top:8px">Remote-First · Serving Clients Globally 🌍</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADMIN PANEL ===== -->
+<section class="section" style="border-top:2px dashed rgba(200,245,66,0.2)">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+    <div>
+      <div class="section-label">Backend Dashboard</div>
+      <h2 class="section-title" style="margin-bottom:0">Admin <span class="accent">Panel</span></h2>
+    </div>
+    <button class="btn-outline" onclick="toggleAdmin()" style="font-size:0.85rem;padding:10px 20px">
+      🔐 Toggle Panel
+    </button>
+  </div>
+
+  <div id="admin-panel" style="display:none">
+    <!-- Stats Row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px">
+      <div style="background:var(--card);border:1px solid rgba(200,245,66,0.2);border-radius:var(--radius);padding:24px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:8px">📬</div>
+        <div style="font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--accent)" id="admin-contacts-count">0</div>
+        <div style="font-size:0.8rem;color:var(--muted)">Contact Submissions</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(123,94,167,0.3);border-radius:var(--radius);padding:24px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:8px">💼</div>
+        <div style="font-family:var(--font-head);font-size:2rem;font-weight:800;color:#7b5ea7" id="admin-quotes-count">0</div>
+        <div style="font-size:0.8rem;color:var(--muted)">Quote Requests</div>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(255,77,109,0.2);border-radius:var(--radius);padding:24px;text-align:center">
+        <div style="font-size:2rem;margin-bottom:8px">💌</div>
+        <div style="font-family:var(--font-head);font-size:2rem;font-weight:800;color:#ff4d6d" id="admin-subs-count">0</div>
+        <div style="font-size:0.8rem;color:var(--muted)">Newsletter Subscribers</div>
+      </div>
+    </div>
+
+    <!-- Export Buttons -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px">
+      <button class="btn-primary" onclick="exportToExcel('contacts')" style="font-size:0.85rem;padding:10px 20px">
+        📊 Export Contacts (.xlsx)
+      </button>
+      <button class="btn-primary" onclick="exportToExcel('quotes')" style="font-size:0.85rem;padding:10px 20px;background:var(--accent2);color:white">
+        📋 Export Quotes (.xlsx)
+      </button>
+      <button class="btn-primary" onclick="exportToExcel('subscribers')" style="font-size:0.85rem;padding:10px 20px;background:#ff4d6d;color:white">
+        💌 Export Subscribers (.xlsx)
+      </button>
+      <button class="btn-outline" onclick="clearAllData()" style="font-size:0.85rem;padding:10px 20px;border-color:rgba(255,77,109,0.4);color:#ff4d6d">
+        🗑️ Clear All Data
+      </button>
+    </div>
+
+    <!-- Google Sheet Status -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:1.2rem">📊</span>
+        <div style="font-family:var(--font-head);font-weight:700">Google Sheets Connection</div>
+        <span id="sheet-status" style="font-family:var(--font-mono);font-size:0.7rem;padding:3px 10px;border-radius:100px;background:rgba(255,77,109,0.1);color:#ff4d6d;border:1px solid rgba(255,77,109,0.3)">NOT CONNECTED</span>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px">Google Sheet URL set karo <code style="background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-size:0.8rem">js/main.js</code> mein <code style="background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-size:0.8rem">GOOGLE_SHEET_URL</code> variable mein.</p>
+      <div style="background:rgba(5,5,8,0.5);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">
+        const GOOGLE_SHEET_URL = '<span style="color:var(--accent)">'YOUR_APPS_SCRIPT_URL'</span>';
+      </div>
+    </div>
+
+    <!-- Recent Submissions Table -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+      <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+        <div style="font-family:var(--font-head);font-weight:700">Recent Submissions</div>
+        <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted)">Last 10 entries</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.03)">
+              <th style="padding:12px 20px;text-align:left;font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;border-bottom:1px solid var(--border)">TYPE</th>
+              <th style="padding:12px 20px;text-align:left;font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;border-bottom:1px solid var(--border)">NAME</th>
+              <th style="padding:12px 20px;text-align:left;font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;border-bottom:1px solid var(--border)">EMAIL</th>
+              <th style="padding:12px 20px;text-align:left;font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;border-bottom:1px solid var(--border)">SERVICE</th>
+              <th style="padding:12px 20px;text-align:left;font-family:var(--font-mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;border-bottom:1px solid var(--border)">DATE</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body">
+            <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:32px;font-size:0.9rem">No submissions yet — submit a test form to see data here!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="logo" href="../index.html">PIXEL<span>FORGE</span></a><p>Building extraordinary digital experiences for ambitious brands.</p><div class="social-links"><div class="social-btn">𝕏</div><div class="social-btn">in</div><div class="social-btn">⬤</div></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="work.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a>hello@pixelforge.studio</a></li><li><a>+1 (415) 555-0199</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+async function submitContactForm() {
+  const fname   = document.getElementById('cf-fname').value.trim();
+  const lname   = document.getElementById('cf-lname').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const service = document.getElementById('cf-service').value;
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!fname || !lname) { showToast('Missing Name','Please enter your full name.','⚠️'); return; }
+  if (!validateEmail(email)) { showToast('Invalid Email','Please enter a valid email address.','⚠️'); return; }
+  if (!service) { showToast('Select Service','Please choose a service type.','⚠️'); return; }
+  if (message.length < 20) { showToast('Add More Detail','Describe your project (min. 20 characters).','⚠️'); return; }
+
+  const btn = document.getElementById('contact-submit');
+  btn.classList.add('btn-loading');
+  btn.textContent = 'Sending...';
+
+  // Save locally + send to Google Sheet
+  DB.saveContact({
+    name: fname + ' ' + lname, email,
+    company: document.getElementById('cf-company').value,
+    service, budget: document.getElementById('cf-budget').value, message
+  });
+
+  // Simulate small delay for UX
+  await new Promise(r => setTimeout(r, 1800));
+
+  btn.classList.remove('btn-loading');
+  btn.textContent  = 'Message Sent ✓';
+  btn.style.cssText = 'width:100%;background:rgba(200,245,66,0.1);border:1px solid rgba(200,245,66,0.3);color:var(--accent);padding:14px;border-radius:100px;font-family:var(--font-head);font-weight:700;cursor:default';
+  document.getElementById('form-success').style.display = 'block';
+  showToast('Message Sent! 🚀', "We'll reply within 24 hours.");
+
+  // Clear form
+  ['cf-fname','cf-lname','cf-email','cf-company','cf-message'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cf-service').value = '';
+  document.getElementById('cf-budget').value  = '';
+
+  // Update admin panel counts
+  loadAdminStats();
+}
+
+// ===== ADMIN PANEL =====
+function loadAdminStats() {
+  const contacts    = JSON.parse(localStorage.getItem('pf_contacts')  || '[]');
+  const quotes      = JSON.parse(localStorage.getItem('pf_quotes')    || '[]');
+  const subscribers = JSON.parse(localStorage.getItem('pf_subs')      || '[]');
+
+  document.getElementById('admin-contacts-count').textContent    = contacts.length;
+  document.getElementById('admin-quotes-count').textContent      = quotes.length;
+  document.getElementById('admin-subs-count').textContent        = subscribers.length;
+
+  // Latest submissions table
+  const tbody = document.getElementById('admin-table-body');
+  tbody.innerHTML = '';
+  const all = [...contacts.map(c => ({...c, _type:'Contact'})), ...quotes.map(q => ({...q, _type:'Quote'}))]
+    .sort((a,b) => b.id - a.id).slice(0, 10);
+
+  if (all.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">No submissions yet</td></tr>';
+    return;
+  }
+  all.forEach(row => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${row._type}</td>
+        <td>${row.name || '-'}</td>
+        <td>${row.email || '-'}</td>
+        <td>${row.service || row.type || '-'}</td>
+        <td>${new Date(row.timestamp).toLocaleDateString('en-IN')}</td>
+      </tr>`;
+  });
+}
+
+function toggleAdmin() {
+  const panel = document.getElementById('admin-panel');
+  const isHidden = panel.style.display === 'none' || panel.style.display === '';
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) loadAdminStats();
+}
+
+// Load on page start
+document.addEventListener('DOMContentLoaded', loadAdminStats);
+</script>
+</body>
+</html>

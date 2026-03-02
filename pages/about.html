@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — PixelForge Studio</title>
+<link rel="stylesheet" href="../css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.stat-box .n{font-family:var(--font-head);font-size:2.2rem;font-weight:800;color:var(--accent)}
+.stat-box .l{font-size:0.82rem;color:var(--muted)}
+@media(max-width:768px){.about-split{grid-template-columns:1fr!important;gap:40px!important}}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div><div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="toast" id="toast"><div class="toast-icon" id="toast-icon">✅</div><div class="toast-text"><div class="toast-title" id="toast-title">Done!</div><div class="toast-msg" id="toast-msg"></div></div></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Get a Free Quote</div><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group"><label class="form-label">Project Type</label><select class="form-select" id="modal-type"><option value="">Select a service</option><option>Landing Page</option><option>Business Website</option><option>E-commerce</option><option>Portfolio</option></select></div>
+    <div class="form-group"><label class="form-label">Budget</label><select class="form-select" id="modal-budget"><option value="">Select budget</option><option>$500–$1,500</option><option>$1,500–$5,000</option><option>$5,000+</option></select></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Tell us about your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send Request →</button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../index.html">Home</a><a href="services.html">Services</a>
+  <a href="work.html">Work</a><a href="about.html" class="current">About</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<nav id="navbar">
+  <a class="logo" href="../index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Work</a></li><li><a href="about.html" class="current">About</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="section-label" style="justify-content:center">Our Story</div>
+  <h1 class="section-title">We're a Small Team<br>with <span class="accent">Big Ambitions</span></h1>
+</div>
+
+<section class="section">
+  <div class="about-split">
+    <div>
+      <p style="color:var(--muted);margin-bottom:20px;line-height:1.8">Founded in 2019 in San Francisco, PixelForge started with a simple belief: great design and great code shouldn't be a luxury. We set out to make exceptional web experiences accessible to ambitious teams of every size.</p>
+      <p style="color:var(--muted);margin-bottom:32px;line-height:1.8">Today we've shipped 150+ projects, worked across 30+ industries, and helped clients grow their revenue by an average of 280%. We're remote-first, design-obsessed, and relentlessly curious.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="stat-box"><div class="n">150+</div><div class="l">Projects Delivered</div></div>
+        <div class="stat-box"><div class="n">30+</div><div class="l">Industries Served</div></div>
+        <div class="stat-box"><div class="n">280%</div><div class="l">Avg. Traffic Growth</div></div>
+        <div class="stat-box"><div class="n">98%</div><div class="l">Client Satisfaction</div></div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(123,94,167,0.1),rgba(200,245,66,0.05));border:1px solid var(--border);border-radius:20px;padding:40px;display:flex;align-items:center;justify-content:center;min-height:360px">
+      <div style="text-align:center">
+        <div style="font-size:4rem;margin-bottom:16px">🚀</div>
+        <div style="font-family:var(--font-head);font-size:1.4rem;font-weight:800;margin-bottom:8px">PixelForge Studio</div>
+        <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);margin-bottom:16px">EST. 2019 · SAN FRANCISCO</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <span class="tag">Design-first</span>
+          <span class="tag">Performance-obsessed</span>
+          <span class="tag">Remote team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section bg-alt">
+  <div class="section-label">The Team</div>
+  <h2 class="section-title">Meet the People Behind the <span class="accent">Magic</span></h2>
+  <div class="team-grid" style="margin-top:40px">
+    <div class="team-card"><div class="team-avatar av1">JM</div><div class="team-name">Jake Morrison</div><div class="team-role">Founder & Lead Dev</div><div class="team-bio">10 years building for startups and enterprises. Obsessed with performance and clean architecture.</div></div>
+    <div class="team-card"><div class="team-avatar av2">PL</div><div class="team-name">Priya Li</div><div class="team-role">Creative Director</div><div class="team-bio">Former designer at Apple and Airbnb. Brings product thinking and visual craft to every project.</div></div>
+    <div class="team-card"><div class="team-avatar av3">MK</div><div class="team-name">Marcus Kim</div><div class="team-role">Frontend Engineer</div><div class="team-bio">React wizard and animation specialist. Makes the impossible feel natural and smooth.</div></div>
+    <div class="team-card"><div class="team-avatar av4">SO</div><div class="team-name">Sofia Ortega</div><div class="team-role">UX Strategist</div><div class="team-bio">Conversion rate optimization and user research expert. Turns data into delight.</div></div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="section">
+  <div class="section-label">Technology</div>
+  <h2 class="section-title">Our <span class="accent">Tech Stack</span></h2>
+  <p class="section-desc">We choose tools that are battle-tested, performant, and developer-friendly. No fads — just what works best for your project.</p>
+  <div class="tech-grid">
+    <div class="tech-badge">⚛️ React / Next.js</div>
+    <div class="tech-badge">🟨 JavaScript / TypeScript</div>
+    <div class="tech-badge">🎨 Tailwind CSS</div>
+    <div class="tech-badge">🟩 Node.js</div>
+    <div class="tech-badge">🐘 PostgreSQL</div>
+    <div class="tech-badge">⚡ Supabase</div>
+    <div class="tech-badge">🔷 Three.js / WebGL</div>
+    <div class="tech-badge">✨ GSAP / Framer Motion</div>
+    <div class="tech-badge">🛍️ Shopify</div>
+    <div class="tech-badge">💳 Stripe</div>
+    <div class="tech-badge">▲ Vercel / Netlify</div>
+    <div class="tech-badge">🎭 Figma</div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section bg-alt">
+  <div class="section-label">Kind Words</div>
+  <h2 class="section-title">More Client <span class="accent">Stories</span></h2>
+  <div class="testimonials-grid" style="margin-top:40px">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"Working with PixelForge was the best decision we made. They understood our brand immediately and the final product was beyond anything we imagined."</div><div class="testi-author"><div class="author-avatar av4">DB</div><div><div class="author-name">David Brown</div><div class="author-role">CMO, GreenBase</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"The animations and micro-interactions they built made our product feel premium. Customers regularly comment on how smooth and beautiful our site is."</div><div class="testi-author"><div class="author-avatar av5">LW</div><div><div class="author-name">Lisa Wang</div><div class="author-role">Product Lead, Nexus</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"Delivered on time, on budget, and the communication throughout was excellent. 3 months later we're still discovering clever details they built in."</div><div class="testi-author"><div class="author-avatar av6">TP</div><div><div class="author-name">Tom Patel</div><div class="author-role">Founder, Roast Coffee</div></div></div></div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Let's Build Something <span class="accent">Together</span></h2>
+  <p>We take on 4–6 new projects per month. Spots fill fast.</p>
+  <button class="btn-primary" onclick="openModal()">Check Availability →</button>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="logo" href="../index.html">PIXEL<span>FORGE</span></a><p>Building extraordinary digital experiences for ambitious brands.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">All Services</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="work.html">Portfolio</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

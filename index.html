@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixelForge Studio — Creative Web Development Agency</title>
+<meta name="description" content="Modern, aesthetic, and high-performance websites for businesses and personal brands.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toast-icon">✅</div>
+  <div class="toast-text">
+    <div class="toast-title" id="toast-title">Success!</div>
+    <div class="toast-msg" id="toast-msg">Done.</div>
+  </div>
+</div>
+
+<!-- Quote Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Get a Free Quote</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="modal-name" type="text" placeholder="John Doe"></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" id="modal-email" type="email" placeholder="john@example.com"></div>
+    <div class="form-group">
+      <label class="form-label">Project Type</label>
+      <select class="form-select" id="modal-type">
+        <option value="">Select a service</option>
+        <option>Landing Page</option><option>Business Website</option><option>E-commerce</option><option>Portfolio</option><option>Custom Project</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Budget Range</label>
+      <select class="form-select" id="modal-budget">
+        <option value="">Select budget</option>
+        <option>$500 – $1,500</option><option>$1,500 – $5,000</option><option>$5,000 – $15,000</option><option>$15,000+</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Brief Description</label><textarea class="form-textarea" id="modal-desc" placeholder="Tell us about your project..."></textarea></div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="submitQuote()">Send Request →</button>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="pages/services.html">Services</a>
+  <a href="pages/work.html">Work</a>
+  <a href="pages/about.html">About</a>
+  <a href="pages/blog.html">Blog</a>
+  <a href="pages/contact.html">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="logo" href="index.html">PIXEL<span>FORGE</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="current">Home</a></li>
+    <li><a href="pages/services.html">Services</a></li>
+    <li><a href="pages/work.html">Work</a></li>
+    <li><a href="pages/about.html">About</a></li>
+    <li><a href="pages/blog.html">Blog</a></li>
+    <li><a href="pages/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Get a Quote</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-bg-orb orb3"></div>
+  <div class="hero-left">
+    <div class="hero-label">Available for Projects · 2026</div>
+    <h1 class="hero-title">
+      We Build <span class="line2">Extraordinary</span>
+      <span class="line3">Digital Experiences</span>
+    </h1>
+    <p class="hero-desc">Modern, aesthetic, and high-performance websites that convert visitors into customers. Clean UI/UX, smooth animations, lightning-fast performance.</p>
+    <div class="hero-actions">
+      <a href="pages/work.html" class="btn-primary">View Our Work →</a>
+      <button class="btn-outline" onclick="openModal()">Start a Project</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-count="150">0+</span><span class="stat-label">Projects Done</span></div>
+      <div class="stat"><span class="stat-num" data-count="98">0</span><span class="stat-label">Happy Clients</span></div>
+      <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">Years Experience</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card hc1">
+      <div class="hc-label">// performance.metrics</div>
+      <div class="hc-title">Lighthouse Score</div>
+      <div class="hc-bar"><div class="hc-fill" style="width:97%"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px"><span style="font-size:0.72rem;color:var(--muted)">Performance</span><span class="hc-score">97/100</span></div>
+      <div class="hc-bar" style="margin-top:10px"><div class="hc-fill" style="width:100%;background:var(--accent2)"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px"><span style="font-size:0.72rem;color:var(--muted)">Accessibility</span><span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent2)">100/100</span></div>
+    </div>
+    <div class="hero-card hc2">
+      <div class="hc-icon">🚀</div>
+      <div class="hc-title">Just Shipped</div>
+      <div class="hc-text">E-commerce redesign increased conversions by 340% in the first month.</div>
+    </div>
+    <div class="hero-card hc3">
+      <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--accent);margin-bottom:6px">✓ Live</div>
+      <div style="font-family:var(--font-head);font-weight:700;font-size:0.9rem">TechBrand.io</div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">↑ 280% traffic</div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Landing Pages <span class="marquee-dot"></span></span>
+    <span class="marquee-item">E-commerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Portfolio Sites <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Applications <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Identity <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UI/UX Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">SEO Optimization <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Animation & Motion <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Landing Pages <span class="marquee-dot"></span></span>
+    <span class="marquee-item">E-commerce <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Portfolio Sites <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Web Applications <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Identity <span class="marquee-dot"></span></span>
+    <span class="marquee-item">UI/UX Design <span class="marquee-dot"></span></span>
+    <span class="marquee-item">SEO Optimization <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Animation & Motion <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- Services Preview -->
+<section class="section">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Services Built to <span class="accent">Perform</span></h2>
+  <p class="section-desc">From concept to launch, we deliver end-to-end digital solutions tailored to your brand.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🎨</div><div class="service-name">Landing Pages</div><div class="service-desc">High-converting single-page experiences with compelling copy, bold visuals, and clear CTAs that drive action.</div><div class="service-tags"><span class="tag">Conversion</span><span class="tag">Design</span><span class="tag">Animation</span></div></div>
+    <div class="service-card"><div class="service-icon">🏢</div><div class="service-name">Business Websites</div><div class="service-desc">Professional multi-page sites with CMS integration, SEO optimization, and seamless user journeys.</div><div class="service-tags"><span class="tag">CMS</span><span class="tag">SEO</span><span class="tag">Responsive</span></div></div>
+    <div class="service-card"><div class="service-icon">🛒</div><div class="service-name">E-commerce</div><div class="service-desc">Complete shopping experiences with product catalogs, cart systems, payment integration, and admin dashboards.</div><div class="service-tags"><span class="tag">Shopify</span><span class="tag">Stripe</span><span class="tag">Analytics</span></div></div>
+  </div>
+  <div style="text-align:center;margin-top:40px"><a href="pages/services.html" class="btn-outline">View All Services →</a></div>
+</section>
+
+<!-- Testimonials -->
+<section class="section bg-alt">
+  <div class="section-label">Client Reviews</div>
+  <h2 class="section-title">What Clients <span class="accent">Say</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"PixelForge delivered a website that far exceeded our expectations. Traffic increased 280% within the first 3 months post-launch."</div><div class="testi-author"><div class="author-avatar av1">AM</div><div><div class="author-name">Alex Morgan</div><div class="author-role">CEO, TechBrand.io</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"Stunning design, clean code, and delivered 2 weeks ahead of schedule. The attention to detail is unparalleled."</div><div class="testi-author"><div class="author-avatar av2">SC</div><div><div class="author-name">Sara Chen</div><div class="author-role">Founder, LuxeStore</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testi-text">"Our e-commerce conversion rate jumped 340% after the redesign. The new UX is smooth, fast, and customers love it."</div><div class="testi-author"><div class="author-avatar av3">RJ</div><div><div class="author-name">Ryan James</div><div class="author-role">Director, ShopNative</div></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label" style="justify-content:center;margin-bottom:20px">Start Today</div>
+  <h2>Ready to Build Something <span class="accent">Remarkable?</span></h2>
+  <p>Tell us your vision. We'll make it real — on time, on budget, and beyond your expectations.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-primary" onclick="openModal()">Get Free Quote →</button>
+    <a href="pages/contact.html" class="btn-outline">Schedule a Call</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="index.html">PIXEL<span>FORGE</span></a>
+      <p>Building extraordinary digital experiences for ambitious brands.</p>
+      <div class="social-links">
+        <div class="social-btn">𝕏</div><div class="social-btn">in</div><div class="social-btn">⬤</div>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="pages/services.html">Landing Pages</a></li><li><a href="pages/services.html">Business Websites</a></li><li><a href="pages/services.html">E-commerce</a></li><li><a href="pages/services.html">Web Apps</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="pages/about.html">About Us</a></li><li><a href="pages/work.html">Portfolio</a></li><li><a href="pages/blog.html">Blog</a></li><li><a href="pages/contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="pages/privacy.html">Privacy Policy</a></li><li><a href="pages/terms.html">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PixelForge Studio. All rights reserved.</p><p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--muted)">Built with ❤️ & ☕</p></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    let c = 0; const step = target / 60;
+    const iv = setInterval(() => {
+      c = Math.min(c + step, target);
+      el.textContent = Math.floor(c) + (target >= 100 ? '+' : '+');
+      if (c >= target) clearInterval(iv);
+    }, 25);
+  });
+</script>
+</body>
+</html>
