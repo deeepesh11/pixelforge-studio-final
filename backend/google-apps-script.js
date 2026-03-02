@@ -20,16 +20,14 @@
 
 function doPost(e) {
   try {
-    const ss   = SpreadsheetApp.getActiveSpreadsheet();
+    const ss   = SpreadsheetApp.openById('1YN4pDtvAYB0Sw5VFDVQE8KCFhj6iGZ0Wq0dlSnw30NY');
     const data = JSON.parse(e.postData.contents);
     const sheetName = data.sheet || 'Contacts';
     
     let sheet = ss.getSheetByName(sheetName);
     
-    // Sheet nahi hai toh banao
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
-      // Headers add karo
       if (sheetName === 'Contacts') {
         sheet.appendRow(['ID','Name','Email','Company','Service','Budget','Message','Date','Status']);
       } else if (sheetName === 'Quotes') {
@@ -37,34 +35,32 @@ function doPost(e) {
       } else if (sheetName === 'Subscribers') {
         sheet.appendRow(['Email','Date']);
       }
-      // Header row style karo
-      sheet.getRange(1, 1, 1, sheet.getLastColumn())
+      sheet.getRange(1,1,1,sheet.getLastColumn())
         .setBackground('#c8f542')
         .setFontColor('#050508')
         .setFontWeight('bold');
     }
     
-    // Data save karo based on sheet type
     if (sheetName === 'Contacts') {
       sheet.appendRow([
-        data.id || Date.now(),
-        data.name        || '',
-        data.email       || '',
-        data.company     || '',
-        data.service     || '',
-        data.budget      || '',
-        data.message     || '',
+        data.id      || Date.now(),
+        data.name    || '',
+        data.email   || '',
+        data.company || '',
+        data.service || '',
+        data.budget  || '',
+        data.message || '',
         new Date().toLocaleString('en-IN'),
-        data.status      || 'new'
+        'new'
       ]);
     } else if (sheetName === 'Quotes') {
       sheet.appendRow([
-        data.id    || Date.now(),
-        data.name  || '',
-        data.email || '',
-        data.type  || '',
-        data.budget|| '',
-        data.desc  || '',
+        data.id     || Date.now(),
+        data.name   || '',
+        data.email  || '',
+        data.type   || '',
+        data.budget || '',
+        data.desc   || '',
         new Date().toLocaleString('en-IN')
       ]);
     } else if (sheetName === 'Subscribers') {
@@ -74,14 +70,19 @@ function doPost(e) {
       ]);
     }
 
-    // Auto-resize columns
     sheet.autoResizeColumns(1, sheet.getLastColumn());
 
-    // Email notification bhejo (optional - apna email daalo)
-    sendEmailNotification(sheetName, data);
+    // Email notification
+    const YOUR_EMAIL = 'suthardeepesh5@gmail.com';
+
+    MailApp.sendEmail(
+      YOUR_EMAIL,
+      `PixelForge — New ${sheetName} from ${data.name || data.email}`,
+      `Name: ${data.name||'-'}\nEmail: ${data.email||'-'}\nService: ${data.service||data.type||'-'}\nBudget: ${data.budget||'-'}\nMessage: ${data.message||data.desc||'-'}\nDate: ${new Date().toLocaleString('en-IN')}`
+    );
 
     return ContentService
-      .createTextOutput(JSON.stringify({ status: 'success', sheet: sheetName }))
+      .createTextOutput(JSON.stringify({ status: 'success' }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch(err) {
@@ -91,52 +92,19 @@ function doPost(e) {
   }
 }
 
-// GET request — dashboard data return karo
-function doGet(e) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const summary = {
-    contacts:    getSheetCount(ss, 'Contacts'),
-    quotes:      getSheetCount(ss, 'Quotes'),
-    subscribers: getSheetCount(ss, 'Subscribers'),
-    lastUpdated: new Date().toLocaleString('en-IN')
-  };
+function doGet() {
+  const ss = SpreadsheetApp.openById('1YN4pDtvAYB0Sw5VFDVQE8KCFhj6iGZ0Wq0dlSnw30NY');
   return ContentService
-    .createTextOutput(JSON.stringify(summary))
+    .createTextOutput(JSON.stringify({
+      contacts:    getCount(ss,'Contacts'),
+      quotes:      getCount(ss,'Quotes'),
+      subscribers: getCount(ss,'Subscribers')
+    }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-function getSheetCount(ss, name) {
+function getCount(ss, name) {
   const sheet = ss.getSheetByName(name);
   if (!sheet) return 0;
-  const rows = sheet.getLastRow();
-  return rows > 1 ? rows - 1 : 0; // minus header row
-}
-
-// ===== EMAIL NOTIFICATION (Optional) =====
-// Naya form submission aane par email aayega
-function sendEmailNotification(type, data) {
-  const YOUR_EMAIL = 'suthardeepesh5@gmail.com'; // Yahan apna email daalo
-  
-  if (YOUR_EMAIL === 'YOUR_EMAIL@gmail.com') return; // Skip if not set
-  
-  const subject = `PixelForge — New ${type} from ${data.name || data.email}`;
-  const body = `
-New ${type} received on PixelForge Studio website!
-
-Name:    ${data.name    || '-'}
-Email:   ${data.email   || '-'}
-Service: ${data.service || data.type || '-'}
-Budget:  ${data.budget  || '-'}
-Message: ${data.message || data.desc || '-'}
-
-Date: ${new Date().toLocaleString('en-IN')}
-
-View all data: ${SpreadsheetApp.getActiveSpreadsheet().getUrl()}
-  `;
-  
-  try {
-    MailApp.sendEmail(YOUR_EMAIL, subject, body);
-  } catch(e) {
-    console.log('Email send failed:', e);
-  }
+  return Math.max(0, sheet.getLastRow() - 1);
 }
