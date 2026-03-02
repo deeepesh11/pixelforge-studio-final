@@ -115,7 +115,7 @@ function getSheetCount(ss, name) {
 // ===== EMAIL NOTIFICATION (Optional) =====
 // Naya form submission aane par email aayega
 function sendEmailNotification(type, data) {
-  const YOUR_EMAIL = 'YOUR_EMAIL@gmail.com'; // Yahan apna email daalo
+  const YOUR_EMAIL = 'suthardeepesh5@gmail.com'; // Yahan apna email daalo
   
   if (YOUR_EMAIL === 'YOUR_EMAIL@gmail.com') return; // Skip if not set
   
