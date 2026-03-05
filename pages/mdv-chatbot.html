@@ -25,7 +25,7 @@
   --success:   #22c55e;
 }
 
-html, body { height: 100%; overflow: hidden; }
+html { height: 100%; } body { height: 100%; height: 100dvh; overflow: hidden; }
 
 body {
   background: var(--bg);
@@ -34,6 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
 }
 
 /* ── Ambient background ── */
@@ -307,7 +308,98 @@ header {
   letter-spacing: 0.05em;
 }
 
-@media(max-width:600px){
+
+  /* ── Animated particles ── */
+  .particle {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    animation: floatP linear infinite;
+    background: rgba(59,130,246,0.15);
+  }
+  @keyframes floatP {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ── Header shimmer ── */
+  header::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.6), rgba(6,182,212,0.4), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%,100% { opacity: 0.3; transform: scaleX(0.5); }
+    50%     { opacity: 1;   transform: scaleX(1); }
+  }
+
+  /* ── Logo pulse ── */
+  .logo-mark {
+    animation: logoPulse 3s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%,100% { box-shadow: 0 0 0 1px rgba(59,130,246,0.4), 0 8px 24px rgba(37,99,235,0.3); }
+    50%     { box-shadow: 0 0 0 3px rgba(59,130,246,0.2), 0 8px 32px rgba(37,99,235,0.5); }
+  }
+
+  /* ── Bubble hover ── */
+  .bubble.bot:hover  { border-color: rgba(59,130,246,0.25); transition: border-color 0.3s; }
+  .bubble.user:hover { border-color: rgba(59,130,246,0.35); transition: border-color 0.3s; }
+
+  /* ── Send btn pulse when idle ── */
+  #send-btn:not(:disabled) {
+    animation: sendPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes sendPulse {
+    0%,100% { box-shadow: 0 4px 12px rgba(37,99,235,0.35); }
+    50%     { box-shadow: 0 4px 20px rgba(37,99,235,0.6); }
+  }
+
+  /* ── Welcome card animation ── */
+  .welcome-card {
+    animation: cardIn 0.6s cubic-bezier(0.34,1.2,0.64,1) both;
+  }
+  @keyframes cardIn {
+    from { opacity:0; transform: translateY(24px) scale(0.96); }
+    to   { opacity:1; transform: translateY(0)    scale(1); }
+  }
+  .wc-logo {
+    animation: wcLogoPulse 3s ease-in-out infinite;
+  }
+  @keyframes wcLogoPulse {
+    0%,100% { box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+    50%     { box-shadow: 0 8px 36px rgba(37,99,235,0.6), 0 0 20px rgba(6,182,212,0.2); }
+  }
+
+  /* ── Chip btn animation ── */
+  .chip-btn { animation: chipIn 0.4s ease both; }
+  .chip-btn:nth-child(1) { animation-delay: 0.05s; }
+  .chip-btn:nth-child(2) { animation-delay: 0.10s; }
+  .chip-btn:nth-child(3) { animation-delay: 0.15s; }
+  .chip-btn:nth-child(4) { animation-delay: 0.20s; }
+  .chip-btn:nth-child(5) { animation-delay: 0.25s; }
+  .chip-btn:nth-child(6) { animation-delay: 0.30s; }
+  .chip-btn:nth-child(7) { animation-delay: 0.35s; }
+  .chip-btn:nth-child(8) { animation-delay: 0.40s; }
+  @keyframes chipIn {
+    from { opacity:0; transform: translateY(8px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ── Input area glow ── */
+  .input-box:focus-within {
+    border-color: var(--border2);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.08), 0 0 20px rgba(37,99,235,0.1);
+  }
+
+  /* ── Scrollbar glow ── */
+  .chat-area::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--blue), var(--cyan));
+    border-radius: 2px;
+  }
+
+  @media(max-width:600px){
   header { padding: 0 16px; height: 60px; }
   .model-badge, .clear-btn { display: none; }
   .chat-area { padding: 16px 12px 8px; }
@@ -544,18 +636,22 @@ async function send() {
   showTyping();
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const geminiMessages = history.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
+
+    const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBI07f7vCxz9VTEB_4asx1_srq35xYp_h8', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM,
-        messages: history
+        system_instruction: { parts: [{ text: SYSTEM }] },
+        contents: geminiMessages,
+        generationConfig: { maxOutputTokens: 1000 }
       })
     });
     const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Something went wrong. Please try again.';
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Something went wrong. Please try again.';
     history.push({ role: 'assistant', content: reply });
     hideTyping();
     addMsg('bot', fmt(reply));
@@ -567,6 +663,24 @@ async function send() {
   busy = false; sendBtn.disabled = false;
   msgInput.focus();
 }
+
+
+/* ── Floating particles ── */
+(function() {
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 15 + 10}s;
+      animation-delay: ${Math.random() * 10}s;
+      opacity: ${Math.random() * 0.5 + 0.1};
+    `;
+    document.body.appendChild(p);
+  }
+})();
 
 /* ── Initial greeting ── */
 setTimeout(() => {
