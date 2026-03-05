@@ -55,7 +55,13 @@ body::before {
   position: fixed; top: 0; left: 0; height: 3px;
   background: var(--accent); z-index: 600; transition: width 0.1s linear; width: 0;
 }
-
+/* ==== LOGO ======*/
+.logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 /* ===== NAVIGATION ===== */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 500;
