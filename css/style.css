@@ -143,9 +143,9 @@ h1.hero-title .line3 { color: var(--muted); font-weight: 400; display: block; fo
   background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 24px; position: absolute; backdrop-filter: blur(10px);
 }
-.hc1 { width: 280px; top: 20px; right: 0; animation: float1 4s ease-in-out infinite; }
+.hc1 { width: 260px; top: 20px; right: 0; animation: float1 4s ease-in-out infinite; }
 .hc2 { width: 220px; bottom: 80px; left: 0; animation: float2 5s ease-in-out infinite; }
-.hc3 { width: 190px; top: 170px; right: 60px; background: rgba(200,245,66,0.08); border-color: rgba(200,245,66,0.2); animation: float3 3.5s ease-in-out infinite; }
+.hc3 { width: 160px; top: 150px; right: 60px; background: rgba(200,245,66,0.08); border-color: rgba(200,245,66,0.2); animation: float3 3.5s ease-in-out infinite; }
 .hc-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); margin-bottom: 10px; }
 .hc-title { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
 .hc-bar { height: 6px; border-radius: 100px; background: var(--border); margin-bottom: 6px; overflow: hidden; }
