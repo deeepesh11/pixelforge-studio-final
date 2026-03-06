@@ -472,106 +472,191 @@ header {
 <script>
 /* ── FIXED Q&A DATABASE ── */
 const QA = [
+  // Greetings
+  { q: ['hello','hi','hey','namaste','hii','helo','good morning','good evening','good afternoon','sup','howdy','hiya','greetings'],
+    a: `Hello! 👋 <strong>MDV Solutions</strong> mein aapka swagat hai!<br><br>Aap puch sakte hain:<br>🛠 Services &nbsp;·&nbsp; 💰 Pricing &nbsp;·&nbsp; 🗂 Portfolio &nbsp;·&nbsp; 📋 Quote &nbsp;·&nbsp; 📞 Contact` },
+
+  // How are you
+  { q: ['how are you','kaise ho','kaisa hai','kya haal','whats up',"what's up",'aap kaisa'],
+    a: `Main bilkul theek hoon, shukriya poochne ke liye! 😊<br><br>Aap batao — main aapki kaise help kar sakta hoon aaj?` },
+
+  // Who are you / About bot
+  { q: ['who are you','kaun ho','aap kaun','what are you','bot','ai','assistant','tumhara naam'],
+    a: `Main <strong>MDV Bot</strong> hoon — MDV Solutions ka official AI assistant! 🤖<br><br>Mujhe MDV Solutions ke baare mein sab pata hai — services, projects, pricing, process aur bahut kuch. Kya jaanna chahte hain?` },
+
+  // About company
+  { q: ['about','kaun','who','team','company','mdv','kya hai','tell me','batao','mdv solutions','agency'],
+    a: `👋 <strong>MDV Solutions</strong> ke baare mein:<br><br>
+    Hum ek premium web design & development agency hain jo ambitious brands ke liye extraordinary digital experiences banate hain.<br><br>
+    ✅ <strong>6+ years</strong> experience<br>
+    ✅ <strong>150+</strong> projects completed<br>
+    ✅ <strong>98+</strong> happy clients<br>
+    ✅ Startups se Fortune 500 tak<br>
+    ✅ Udaipur, Rajasthan based — globally serve karte hain 🌍` },
+
   // Services
-  { q: ['service','services','kya karte','what do you','kya kaam','offer','provide'],
-    a: `MDV Solutions yeh services offer karta hai:<br><br>
-    🎨 <strong>Landing Pages</strong> — $500–$1,500<br>
-    🏢 <strong>Business Websites</strong> — $1,500–$5,000<br>
-    🛒 <strong>E-commerce</strong> — $5,000–$15,000<br>
-    📱 <strong>SaaS / Web Apps</strong> — Custom pricing<br>
-    🎯 <strong>Branding & Identity</strong> — Custom pricing<br><br>
-    Koi specific service ke baare mein jaanna hai?` },
+  { q: ['service','services','kya karte','what do you','kya kaam','offer','provide','kya banate','kya bana'],
+    a: `🛠 <strong>MDV Solutions ki Services:</strong><br><br>
+    🎨 <strong>Landing Pages</strong> — High-converting single pages<br>
+    🏢 <strong>Business Websites</strong> — Full corporate sites<br>
+    🛒 <strong>E-commerce</strong> — Online stores<br>
+    📱 <strong>SaaS / Web Apps</strong> — Complex applications<br>
+    🎯 <strong>Branding & Identity</strong> — Logo & design systems<br>
+    ⚡ <strong>UI/UX Design</strong> — User experience design<br>
+    🔍 <strong>SEO Optimization</strong> — Search ranking<br><br>
+    Kisi specific service ke baare mein jaanna hai?` },
 
   // Pricing
-  { q: ['price','pricing','cost','kitna','charge','budget','rate','fees'],
-    a: `MDV Solutions ki pricing:<br><br>
-    💰 <strong>Landing Page:</strong> $500 – $1,500<br>
-    💰 <strong>Business Website:</strong> $1,500 – $5,000<br>
-    💰 <strong>E-commerce:</strong> $5,000 – $15,000<br>
-    💰 <strong>Custom Project:</strong> $15,000+<br><br>
-    Free quote ke liye "Get a Quote" button click karein!` },
+  { q: ['price','pricing','cost','kitna','charge','budget','rate','fees','paisa','rupee','dollar','kitne ka'],
+    a: `💰 <strong>MDV Solutions Pricing:</strong><br><br>
+    🎨 Landing Page — <strong>$500 – $1,500</strong><br>
+    🏢 Business Website — <strong>$1,500 – $5,000</strong><br>
+    🛒 E-commerce — <strong>$5,000 – $15,000</strong><br>
+    📱 Custom Project — <strong>$15,000+</strong><br><br>
+    💡 <em>Exact quote ke liye project details share karein — hum custom estimate denge!</em>` },
 
-  // Portfolio / Projects
-  { q: ['portfolio','project','work','kaam','client','example','show'],
-    a: `Hamare recent projects:<br><br>
-    ✈️ <strong>TravelFlow</strong> — Travel booking platform (4.9★ rating)<br>
+  // Timeline / How long
+  { q: ['time','timeline','kitna time','how long','days','weeks','deadline','deliver','kab','kitne din','duration'],
+    a: `⏱ <strong>Project Timeline:</strong><br><br>
+    🎨 Landing Page — <strong>3–7 days</strong><br>
+    🏢 Business Website — <strong>1–3 weeks</strong><br>
+    🛒 E-commerce — <strong>3–6 weeks</strong><br>
+    📱 Custom Project — <strong>4–12 weeks</strong><br><br>
+    Timeline project complexity pe depend karta hai. Rush delivery bhi possible hai!` },
+
+  // Process
+  { q: ['process','kaise','how','steps','kaise karte','workflow','kaise banate','procedure'],
+    a: `⚙️ <strong>Hamara 5-Step Process:</strong><br><br>
+    1️⃣ <strong>Discovery Call</strong> — Aapke goals samjhenge<br>
+    2️⃣ <strong>Strategy & Proposal</strong> — Custom plan + pricing<br>
+    3️⃣ <strong>Design</strong> — Wireframes & mockups<br>
+    4️⃣ <strong>Development</strong> — Full build + testing<br>
+    5️⃣ <strong>Launch & Support</strong> — Deploy + maintenance<br><br>
+    Har step pe aapka feedback liya jaata hai!` },
+
+  // Portfolio
+  { q: ['portfolio','project','work','kaam','client','example','show','dekho','projects','past work'],
+    a: `🗂 <strong>Recent Projects:</strong><br><br>
+    ✈️ <strong>TravelFlow</strong> — Travel booking platform (★ 4.9/5)<br>
     💄 <strong>BeautyCo</strong> — Luxury skincare e-commerce (+410% orders)<br>
     ☕ <strong>Roast Coffee</strong> — Brand website (+190% subscriptions)<br>
     👗 <strong>Luxe Fashion</strong> — E-commerce store (+340% conversions)<br><br>
-    Work page pe saare projects dekhein!` },
+    Work page pe saare projects aur case studies dekhein!` },
 
   // TravelFlow
-  { q: ['travelflow','travel','travel flow'],
+  { q: ['travelflow','travel flow','travel agency'],
     a: `✈️ <strong>TravelFlow Agency</strong><br><br>
-    Full destination booking platform with 3D globe & real-time pricing.<br><br>
-    <em>Tech:</em> React, Three.js, Stripe, MongoDB<br>
-    <em>Result:</em> ★ 4.9/5 rating from 12,000+ users` },
+    Full destination booking platform with interactive 3D globe, real-time pricing & seamless booking flow.<br><br>
+    <em>Tech Stack:</em> React, Three.js, Stripe, MongoDB<br>
+    <em>Result:</em> ★ 4.9/5 rating · 12,000+ happy users` },
 
   // BeautyCo
-  { q: ['beautyco','beauty','skincare','beauty co'],
+  { q: ['beautyco','beauty co','beauty','skincare','cosmetic'],
     a: `💄 <strong>BeautyCo Skincare</strong><br><br>
-    Luxury skincare brand with virtual try-on & personalized quiz.<br><br>
-    <em>Tech:</em> Next.js, WebGL, Stripe, Klaviyo<br>
+    Luxury skincare brand with virtual try-on feature, personalized recommendation quiz & subscription boxes.<br><br>
+    <em>Tech Stack:</em> Next.js, WebGL, Stripe, Klaviyo<br>
     <em>Result:</em> 410% increase in repeat orders` },
 
   // Roast Coffee
-  { q: ['roast','coffee','roast coffee'],
+  { q: ['roast','coffee','roast coffee','cafe'],
     a: `☕ <strong>Roast Coffee Co.</strong><br><br>
-    Artisan coffee brand with parallax scrolling & subscription system.<br><br>
-    <em>Tech:</em> HTML, CSS, GSAP, Stripe<br>
+    Artisan coffee brand with atmospheric parallax scrolling, subscription system & 80+ cafe location finder.<br><br>
+    <em>Tech Stack:</em> HTML, CSS, GSAP, Stripe<br>
     <em>Result:</em> 190% increase in subscriptions` },
 
   // Luxe Fashion
-  { q: ['luxe','fashion','luxe fashion','clothing'],
+  { q: ['luxe','fashion','luxe fashion','clothing','clothes'],
     a: `👗 <strong>Luxe Fashion Store</strong><br><br>
-    Premium clothing brand with 3D product views & AI size guide.<br><br>
-    <em>Tech:</em> Next.js, Shopify, Stripe, Three.js<br>
+    Premium clothing brand with 3D product views, AI size guide & one-click checkout.<br><br>
+    <em>Tech Stack:</em> Next.js, Shopify, Stripe, Three.js<br>
     <em>Result:</em> 340% increase in conversions in 60 days` },
 
-  // Quote
-  { q: ['quote','start','begin','hire','contact','get started','project start','kaise shuru'],
-    a: `🚀 Project shuru karne ke liye:<br><br>
+  // Quote / Get started
+  { q: ['quote','start','begin','hire','get started','project start','kaise shuru','collaborate','work together','kaam karna'],
+    a: `🚀 <strong>Project Shuru Karna Chahte Hain?</strong><br><br>
     1. Website pe <strong>"Get a Quote"</strong> button click karein<br>
-    2. Apna naam, email, project type aur budget fill karein<br>
+    2. Naam, email, project type & budget fill karein<br>
     3. Hum <strong>24 ghante</strong> mein reply karenge!<br><br>
-    Ya directly contact karein — hum help karne ke liye taiyaar hain! 😊` },
+    Ya directly WhatsApp karein — hum hamesha available hain! 😊` },
 
-  // About
-  { q: ['about','kaun','who','team','company','mdv','kya hai'],
-    a: `👋 <strong>MDV Solutions</strong> ke baare mein:<br><br>
-    Hum ek premium web design & development agency hain.<br><br>
-    ✅ 6+ years experience<br>
-    ✅ 150+ projects completed<br>
-    ✅ 98+ happy clients<br>
-    ✅ Startups se Fortune 500 tak<br><br>
-    Udaipur, Rajasthan mein based — globally serve karte hain! 🌍` },
-
-  // Process
-  { q: ['process','kaise','how','steps','timeline','time','kitna time'],
-    a: `⚙️ <strong>Hamara Process:</strong><br><br>
-    1️⃣ <strong>Discovery Call</strong> — Goals samjhenge<br>
-    2️⃣ <strong>Proposal</strong> — Timeline & pricing<br>
-    3️⃣ <strong>Design</strong> — Mockups & feedback<br>
-    4️⃣ <strong>Development</strong> — Full build<br>
-    5️⃣ <strong>Launch</strong> — Deploy + support<br><br>
-    Typical timeline: 2–6 weeks project size ke hisaab se.` },
+  // Contact
+  { q: ['contact','email','phone','call','whatsapp','reach','baat','mil','number','address'],
+    a: `📞 <strong>MDV Solutions se Contact:</strong><br><br>
+    📍 Udaipur, Rajasthan, India<br>
+    💬 WhatsApp button neeche right corner mein hai<br>
+    📧 Website ke Contact page pe email bhej sakte hain<br>
+    🌐 Remote work — globally available<br><br>
+    Response time: <strong>Within 24 hours</strong> ✅` },
 
   // Location
-  { q: ['location','where','kahan','address','udaipur','rajasthan','india'],
+  { q: ['location','where','kahan','address','udaipur','rajasthan','india','city','office'],
     a: `📍 <strong>MDV Solutions</strong><br><br>
-    Udaipur, Rajasthan, India<br><br>
-    Remote-first agency — India aur globally clients serve karte hain! 🌍` },
+    Udaipur, Rajasthan, India 🇮🇳<br><br>
+    Remote-first agency — India aur globally clients serve karte hain! 🌍<br>
+    Aap kisi bhi city ya country se hum se kaam karwa sakte hain.` },
 
-  // Hello / Hi
-  { q: ['hello','hi','hey','namaste','hii','helo','good morning','good evening','good afternoon','sup'],
-    a: `Hello! 👋 <strong>MDV Solutions</strong> mein aapka swagat hai!<br><br>
-    Main aapki kaise help kar sakta hoon? Aap puch sakte hain:<br>
-    🛠 Services · 💰 Pricing · 🗂 Portfolio · 📋 Quote` },
+  // Technology / Tech stack
+  { q: ['technology','tech','stack','tools','language','framework','react','nextjs','shopify','wordpress'],
+    a: `💻 <strong>Technologies We Use:</strong><br><br>
+    🔷 <strong>Frontend:</strong> React, Next.js, HTML/CSS, GSAP<br>
+    🔶 <strong>Backend:</strong> Node.js, Python<br>
+    🟢 <strong>E-commerce:</strong> Shopify, WooCommerce, Stripe<br>
+    🗄️ <strong>Database:</strong> MongoDB, PostgreSQL, Supabase<br>
+    ☁️ <strong>Hosting:</strong> Vercel, AWS, Netlify<br>
+    🎨 <strong>Design:</strong> Figma, Three.js, WebGL` },
+
+  // Revisions
+  { q: ['revision','change','update','edit','modify','badlav','badle','fix'],
+    a: `✏️ <strong>Revisions Policy:</strong><br><br>
+    ✅ Har package mein <strong>unlimited revisions</strong> included hain design phase mein<br>
+    ✅ Development ke baad <strong>3 rounds</strong> of changes free<br>
+    ✅ Launch ke baad <strong>30 days</strong> free support<br><br>
+    Hum tab tak kaam karte hain jab tak aap 100% satisfied nahi ho jaate! 😊` },
+
+  // Maintenance / Support
+  { q: ['maintenance','support','after','baad','help','update','maintain','hosting'],
+    a: `🔧 <strong>Post-Launch Support:</strong><br><br>
+    ✅ Launch ke baad <strong>30 days free</strong> bug fixes<br>
+    ✅ Monthly maintenance packages available<br>
+    ✅ Hosting setup & domain help<br>
+    ✅ 24/7 emergency support (premium plans)<br><br>
+    Hum sirf website banate nahi — long-term partner hain! 🤝` },
+
+  // SEO
+  { q: ['seo','search','google','rank','ranking','traffic','organic'],
+    a: `🔍 <strong>SEO Services:</strong><br><br>
+    ✅ On-page SEO optimization<br>
+    ✅ Meta tags & structured data<br>
+    ✅ Page speed optimization<br>
+    ✅ Mobile-first design<br>
+    ✅ Google Analytics setup<br><br>
+    Hamare clients average <strong>200%+ organic traffic</strong> increase dekhte hain!` },
+
+  // Mobile / Responsive
+  { q: ['mobile','responsive','phone','tablet','screen','device'],
+    a: `📱 <strong>Mobile-First Design:</strong><br><br>
+    Hum har website <strong>mobile-first approach</strong> se banate hain.<br><br>
+    ✅ All screen sizes pe perfect<br>
+    ✅ Touch-friendly UI<br>
+    ✅ Fast loading on mobile<br>
+    ✅ Google Mobile-Friendly certified<br><br>
+    Aaj 70%+ traffic mobile se aata hai — isliye mobile UX hamari priority #1 hai!` },
+
+  // Payment
+  { q: ['payment','pay','paisa','kaise pay','advance','installment','deposit'],
+    a: `💳 <strong>Payment Terms:</strong><br><br>
+    💰 <strong>50% advance</strong> project start karne se pehle<br>
+    💰 <strong>50% on delivery</strong> final delivery par<br><br>
+    Payment methods: Bank transfer, UPI, PayPal, Stripe<br><br>
+    Bade projects ke liye <strong>installment plans</strong> bhi available hain!` },
 
   // Thanks
-  { q: ['thanks','thank you','shukriya','dhanyawad','great','awesome','nice'],
-    a: `Shukriya! 😊 Khushi hui madad karke.<br><br>
-    Koi aur sawaal ho toh zaroor poochein! 🚀` },
+  { q: ['thanks','thank you','shukriya','dhanyawad','great','awesome','nice','perfect','badhiya','accha'],
+    a: `Shukriya! 😊 Aapki baat sunke bahut khushi hui.<br><br>Koi aur sawaal ho toh zaroor poochein — hum hamesha yahan hain! 🚀` },
+
+  // Bye
+  { q: ['bye','goodbye','alvida','tata','see you','later','band','close'],
+    a: `Alvida! 👋 Aapse baat karke accha laga.<br><br>Jab bhi koi project idea ho — hum yahan hain! MDV Solutions aapka intezaar karega. 😊🚀` }
 ];
 
 /* ── Match function ── */
@@ -688,7 +773,7 @@ setTimeout(() => {
   Main aapki kaise help kar sakta hoon? Aap puch sakte hain:<br>
   🛠 Services · 💰 Pricing · 🗂 Portfolio · 📋 Quote`, now());
 }, 500);
-
 </script>
+
 </body>
 </html>
